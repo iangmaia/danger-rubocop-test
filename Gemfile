@@ -4,5 +4,5 @@ source 'https://rubygems.org'
 
 # gem "rails"
 
-gem 'danger'
+gem 'danger', git: 'https://github.com/iangmaia/danger', ref: 'remove-stale-comments'
 gem 'danger-rubocop'
