@@ -1,0 +1,20 @@
+on: pull_request
+
+jobs:
+  danger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "📥 Checkout Repo"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
+      - name: "💎 Ruby Setup"
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: "☢️ Danger PR Check"
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "--- 🏃 Running Danger: PR Check"
+          bundle exec danger --fail-on-errors=true --danger_id=pr-check --remove-previous-comments
